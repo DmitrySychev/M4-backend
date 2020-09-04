@@ -25,6 +25,7 @@ ActiveRecord::Schema.define(version: 2020_09_03_214531) do
     t.string "type"
     t.string "thumbnail"
     t.string "category"
+    t.string "type"
   end
 
   create_table "user_events", force: :cascade do |t|
