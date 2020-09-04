@@ -12,7 +12,7 @@ class EventsController < ApplicationController
     end
 
     def destroy
-      @event = Event.find(event_params[:id])
+      @event = Event.find(params[:id])
       @event.destroy
     end
 
