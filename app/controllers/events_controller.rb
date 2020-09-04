@@ -9,12 +9,18 @@ class EventsController < ApplicationController
     def create
         @event = Event.create!(event_params)
         render json: { event: EventSerializer.new(@event) }, status: :created
-      end
+    end
+
+    def destroy
+      @event = Event.find(event_params[:id])
+      @event.destroy
+    end
 
     private
 
     def event_params
         params.require(:event).permit(:title, :description, :date, :category, :thumbnail, :user_id)
-      end
+    end
+
 
 end
