@@ -7,8 +7,10 @@ class UserEventsController < ApplicationController
     end
     
     def create
-        @user_event = UserEvent.create!(user_event_params)
-        render json: { user_event: UserEventSerializer.new(@user_event) }, status: :created
+        current_user_id = current_user.id
+        event_id = user_event_params['event_id']
+        user_event = UserEvent.create(user_id: current_user_id, event_id: event_id)
+        render json: { user_event: user_event }, status: :created
     end
 
     def destroy
@@ -19,7 +21,7 @@ class UserEventsController < ApplicationController
     private
 
     def user_event_params
-        params.require(:user_event).permit(:event_id, :user_id)
+        params.require(:user_event).permit(:event_id)
     end
 
 end

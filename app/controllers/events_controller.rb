@@ -7,7 +7,8 @@ class EventsController < ApplicationController
     end
 
     def create
-        @event = current_user.events.create(event_params)
+        event = current_user.events.create(event_params)
+        UserEvent.create(user_id: current_user.id, event_id: event.id)
         render json: { event: EventSerializer.new(@event) }, status: :created
     end
 
