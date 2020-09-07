@@ -7,8 +7,19 @@ class EventsController < ApplicationController
     end
 
     def create
-        @event = Event.create!(event_params)
+        @event = current_user.events.create(event_params)
         render json: { event: EventSerializer.new(@event) }, status: :created
+    end
+
+    def show
+      @event = Event.find(params[:id])
+      render json: {event: @event}
+    end
+
+    def my_events 
+      joined_events = current_user.joined_events
+      created_events = current_user.events
+      render json: { created_events: created_events, joined_events: joined_events}
     end
 
     def destroy
