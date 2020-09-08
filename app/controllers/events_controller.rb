@@ -13,8 +13,8 @@ class EventsController < ApplicationController
     end
 
     def show
-      @event = Event.find(params[:id])
-      render json: {event: @event}
+      event = Event.find(params[:id])
+      render json: {event: event, attendees: event.users, created_by: event.user }
     end
 
     def my_events 
