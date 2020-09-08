@@ -2,8 +2,8 @@ class UserEventsController < ApplicationController
     skip_before_action :authorized
 
     def index
-        @user_events = UserEvent.all
-        render json: { user_events: @user_events }
+        user_events = UserEvent.all
+        render json: { user_id: current_user.id, user_events: user_events }
     end
     
     def create
@@ -14,9 +14,11 @@ class UserEventsController < ApplicationController
     end
 
     def destroy
+        user_events_by_event_id = UserEvent.select{|user_event| user_event.event_id == params[:id]}
+        user_event_to_destroy = user_events_by_event_id.find{|user_event| user_event.user_id == current_user.id}
         byebug
-        @user_event = UserEvent.find(params[:id])
-        @user_event.destroy
+        render json: { user_event: user_event_to_destroy}
+        user_event_to_destroy.destroy
     end
 
     def show
