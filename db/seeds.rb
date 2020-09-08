@@ -11,6 +11,7 @@ UserEvent.destroy_all
 
 
 require 'faker'
+category = ["Zoom Party", "Happy Hour", "Game Night", "Political Discussion", "AirBnB Experience"]
 
 
 10.times {
@@ -18,7 +19,7 @@ require 'faker'
 }
 
 10.times {
-    Event.create(title: Faker::Movie.quote, description: Faker::Quotes::Shakespeare.hamlet_quote, date: Faker::Date.between(from: '2020-09-03', to: '2020-09-10'), user_id: User.all.sample.id)
+    Event.create(title: Faker::Movie.quote, description: Faker::Quotes::Shakespeare.hamlet_quote, date: Faker::Date.between(from: '2020-09-03', to: '2020-09-10'), category: category.sample, user_id: User.all.sample.id)
 }
 
 10.times {
