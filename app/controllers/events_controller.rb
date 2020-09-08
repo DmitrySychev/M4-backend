@@ -21,6 +21,7 @@ class EventsController < ApplicationController
       joined_events = current_user.joined_events
       created_events = current_user.events
       render json: { created_events: created_events, joined_events: joined_events}
+      # needs to have the id from the user_events table to make the connection for the front to be able to no longer attend
     end
 
     def destroy

@@ -14,9 +14,14 @@ class UserEventsController < ApplicationController
     end
 
     def destroy
+        byebug
         @user_event = UserEvent.find(params[:id])
         @user_event.destroy
-      end
+    end
+
+    def show
+        @user_event = UserEvent.find(params[:id])
+    end
 
     private
 

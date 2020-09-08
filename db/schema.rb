@@ -22,7 +22,6 @@ ActiveRecord::Schema.define(version: 2020_09_03_214531) do
     t.datetime "created_at", precision: 6, null: false
     t.datetime "updated_at", precision: 6, null: false
     t.string "date"
-    t.string "type"
     t.string "thumbnail"
     t.string "category"
     t.string "type"
