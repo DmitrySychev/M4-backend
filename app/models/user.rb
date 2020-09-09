@@ -18,9 +18,10 @@ class User < ApplicationRecord
                 event_counts[event] = 1
             end
         end
-        counts_array = event_counts.max_by(3){|k,v| v}
-        top_three_events = []
-        top_three_events.push(counts_array[0][0], counts_array[1][0], counts_array[2][0])
+
+        num_of_types = user_events.uniq.length
+        counts_array = event_counts.max_by(num_of_types){|k,v| v}
+        top_three_events = counts_array.flatten.select{|ele| ele.class == String}
     end
 
 
