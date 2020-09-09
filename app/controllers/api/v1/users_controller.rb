@@ -14,6 +14,11 @@ class Api::V1::UsersController < ApplicationController
       render json: { error: 'failed to create user' }, status: :not_acceptable
     end
   end
+
+  def recommendations
+    top_three_events = current_user.most_attended_event_type
+    render json: {top_three_events: top_three_events}
+  end
  
   private
  
